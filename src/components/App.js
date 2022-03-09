@@ -7,8 +7,8 @@ import { PrivateRoute } from './PrivateRoute'
 
 export function App() {
   return (
-    <div>
-      <h1 className="text-3xl">supabase-auth-react</h1>
+    <div className="m-8"> 
+      <h1 className="text-3xl text-red-400">TBR List</h1>
 
       <Router>
         <AuthProvider>
