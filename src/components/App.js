@@ -7,8 +7,8 @@ import { PrivateRoute } from './PrivateRoute'
 
 export function App() {
   return (
-    <div className="m-8"> 
-      <h1 className="text-3xl text-red-400">TBR List</h1>
+    <div className="m-8 flex flex-col items-center justify-center h-screen"> 
+      <h1 className="text-3xl text-purple-500 font-bold mb-4">TBR List</h1>
 
       <Router>
         <AuthProvider>

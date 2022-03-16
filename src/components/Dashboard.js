@@ -38,7 +38,7 @@ export function Dashboard() {
     .from('books')
     .delete()
     .eq( "id", id )
-    setBooks(books.filter(book => { return book.id != id}))
+    setBooks(books.filter(book => { return book.id !== id}))
  }
 
   async function handleSignOut() {
@@ -51,9 +51,21 @@ export function Dashboard() {
   
     return (
       <div>
-        <p>Welcome, {user?.id}!</p>
-        <p>What book do you want to read today?</p>
+        <p className="mb-4">Welcome, {user?.id}!</p>
+        <p className="mb-4 text-xl">What book do you want to read today?</p>
         
+        {
+          books.map(book => {
+            return (
+                <ul key={book.id} className="list-disc">
+                  <li className="flex gap-6 items-center "><p>{book.title}</p><p className="italic">{book.author}</p><span className="text-pink-500 text-xl cursor-pointer" onClick={() => deleteBook(book.id)}><MdDeleteForever /></span></li>  
+                </ul>
+          )
+          })
+        }
+        <div className="mt-6">
+          <p className="mb-4 text-xl">Add a new book</p>
+         
           <input 
             placeholder='Title'
             value={book.title}
@@ -65,15 +77,7 @@ export function Dashboard() {
             onChange={e => setBook({ ...book, author: e.target.value })}
           />
           <button className="btn" onClick={createBook}>Add book</button>
-        {
-          books.map(book => {
-            return (
-              <div key={book.id} className="flex flex-row gap-4 items-center cursor-pointer">
-                <p>{book.title}</p><p>{book.author}</p><span className="text-pink-500 text-xl" onClick={() => deleteBook(book.id)}><MdDeleteForever /></span>
-              </div>
-          )
-          })
-        }
+         </div>
         <button onClick={handleSignOut} className="btn mt-40">Sign out</button>
       </div>
     )
